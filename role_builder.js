@@ -10,10 +10,20 @@ let roleBuilder = {
 	    if(creep.store.getFreeCapacity() === 0) this.buildMode = true;
 
 	    if(this.buildMode) {
-	        let targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-			if(targets.length) {
-				if(creep.build(targets[0]) === ERR_NOT_IN_RANGE) {
-					creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+	        let buildTargets = creep.room.find(FIND_CONSTRUCTION_SITES);
+			let repairTargets = creep.room.find(FIND_STRUCTURES, {
+				filter: object => object.hits < object.hitsMax
+			});
+			repairTargets.sort((a,b) => a.hits - b.hits);
+
+			if(buildTargets.length) {
+				if(creep.build(buildTargets[0]) === ERR_NOT_IN_RANGE) {
+					creep.moveTo(buildTargets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+				}
+			}
+			else if(repairTargets.length){
+				if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
+					creep.moveTo(targets[0]);
 				}
 			}
 			else{

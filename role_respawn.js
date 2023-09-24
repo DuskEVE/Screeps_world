@@ -1,15 +1,16 @@
 let roleRespawn = {
     respawn: function(){
-        let creeps = Array.from(Game.creeps);
         let miners = [];
         let upgraders = [];
         let builders = [];
+        let longHaulers = [];
         let soldiers = [];
 
         for(let i in Game.creeps){
             if(Game.creeps[i].memory == 'miner') miners.push(Game.creeps[i].name);
             else if(Game.creeps[i].memory == 'upgrader') upgraders.push(Game.creeps[i].name);
             else if(Game.creeps[i].memory == 'builder') builders.push(Game.creeps[i].name);
+            else if(Game.creeps[i].memory == 'longHauler') longHaulers.push(Game.creeps[i].name);
             else if(Game.creeps[i].memory == 'soldier') soldiers.push(Game.creeps[i].name);
         }
 
@@ -42,9 +43,8 @@ let roleRespawn = {
 
             Game.spawns['base_01'].spawnCreep([WORK, WORK, CARRY, MOVE], name, {memory:'upgrader'});
         }
-
         
-            if(builders.length < 2){
+        if(builders.length < 2){
             let name = null;
             let num = 1;
 
@@ -58,6 +58,22 @@ let roleRespawn = {
 
             Game.spawns['base_01'].spawnCreep([WORK, WORK, CARRY, MOVE], name, {memory:'builder'});
         }
+
+        if(longHaulers.length < 2){
+            let name = null;
+            let num = 1;
+
+            for(let i=0; i<9; i++){
+                if(builders.indexOf(`LongHauler${num}`) === -1){
+                    name = `LongHauler${num}`;
+                    break;
+                }
+                num++;
+            }
+
+            Game.spawns['base_01'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE], name, {memory:'longHauler'});
+        }
+        
     }
 }
 
