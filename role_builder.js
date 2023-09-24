@@ -22,8 +22,8 @@ let roleBuilder = {
 				}
 			}
 			else if(repairTargets.length){
-				if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
-					creep.moveTo(targets[0]);
+				if(creep.repair(repairTargets[0]) == ERR_NOT_IN_RANGE) {
+					creep.moveTo(repairTargets[0]);
 				}
 			}
 			else{
