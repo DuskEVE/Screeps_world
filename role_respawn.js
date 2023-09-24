@@ -6,12 +6,12 @@ let roleRespawn = {
         let builders = [];
         let soldiers = [];
 
-        creeps.forEach(creep => {
-            if(creep.memory.role == 'miner') miners.push(creep.name);
-            else if(creep.memory.role == 'upgrader') upgraders.push(creep.name);
-            else if(creep.memory.role == 'builder') builders.push(creep.name);
-            else if(creep.memory.role == 'soldier') soldiers.push(creep.name);
-        });
+        for(let i in Game.creeps){
+            if(Game.creeps[i].memory == 'miner') miners.push(Game.creeps[i].name);
+            else if(Game.creeps[i].memory == 'upgrader') upgraders.push(Game.creeps[i].name);
+            else if(Game.creeps[i].memory == 'builder') builders.push(Game.creeps[i].name);
+            else if(Game.creeps[i].memory == 'soldier') soldiers.push(Game.creeps[i].name);
+        }
 
         if(miners.length < 1){
             let name = null;
@@ -41,6 +41,22 @@ let roleRespawn = {
             }
 
             Game.spawns['base_01'].spawnCreep([WORK, WORK, CARRY, MOVE], name, {memory:'upgrader'});
+        }
+
+        
+            if(builders.length < 2){
+            let name = null;
+            let num = 1;
+
+            for(let i=0; i<9; i++){
+                if(builders.indexOf(`Builder${num}`) === -1){
+                    name = `Builder${num}`;
+                    break;
+                }
+                num++;
+            }
+
+            Game.spawns['base_01'].spawnCreep([WORK, WORK, CARRY, MOVE], name, {memory:'builder'});
         }
     }
 }
