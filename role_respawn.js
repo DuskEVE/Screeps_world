@@ -29,7 +29,7 @@ let roleRespawn = {
             Game.spawns['base_01'].spawnCreep([WORK, WORK, CARRY, MOVE], name, {memory:'miner'});
         }
 
-        if(upgraders.length < 1){
+        if(upgraders.length < 2){
             let name = null;
             let num = 1;
 
@@ -44,7 +44,7 @@ let roleRespawn = {
             Game.spawns['base_01'].spawnCreep([WORK, WORK, CARRY, MOVE], name, {memory:'upgrader'});
         }
         
-        if(builders.length < 2){
+        if(builders.length < 1){
             let name = null;
             let num = 1;
 
@@ -59,7 +59,7 @@ let roleRespawn = {
             Game.spawns['base_01'].spawnCreep([WORK, WORK, CARRY, MOVE], name, {memory:'builder'});
         }
 
-        if(longHaulers.length < 4){
+        if(longHaulers.length < 1){
             let name = null;
             let num = 1;
 
