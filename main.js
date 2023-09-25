@@ -9,6 +9,21 @@ module.exports.loop = function (){
         Game.getObjectById('5bbcabaa9099fc012e634159').activateSafeMode();
     }
 
+    let tower = Game.getObjectById('6511779d88fd0b6d4e1cdb10');
+    if(tower) {
+        let closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (structure) => structure.hits < structure.hitsMax
+        });
+        if(closestDamagedStructure) {
+            tower.repair(closestDamagedStructure);
+        }
+
+        let closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if(closestHostile) {
+            tower.attack(closestHostile);
+        }
+    }
+
     roleRespawn.respawn();
 
     for(let name in Game.creeps){
@@ -16,6 +31,6 @@ module.exports.loop = function (){
         if(creep.memory == 'miner') roleMining.run(creep);
         if(creep.memory == 'upgrader') roleUpgrad.run(creep);
         if(creep.memory == 'builder') roleBuilder.run(creep);
-        if(creep.memory == 'longHauler') roleLongHauler.run(creep);
+        if(creep.memory == 'longHauler') roleLongHauler.run(creep, name);
     }
 }

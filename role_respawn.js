@@ -59,7 +59,7 @@ let roleRespawn = {
             Game.spawns['base_01'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], name, {memory:'builder'});
         }
 
-        if(longHaulers.length < 1){
+        if(longHaulers.length < 2){
             let name = null;
             let num = 1;
 
@@ -71,7 +71,7 @@ let roleRespawn = {
                 num++;
             }
 
-            Game.spawns['base_01'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE], name, {memory:'longHauler'});
+            Game.spawns['base_01'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE], name, {memory:'longHauler'});
         }
         
     }

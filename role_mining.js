@@ -10,14 +10,16 @@ let roleMining = {
 
         if(this.miningMode){
             let sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[1]) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[1], {visualizePathStyle: {stroke: '#ffaa00'}});
+            if(creep.harvest(sources[sources.length-1]) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[sources.length-1], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         }
         else{
             let targets = creep.room.find(FIND_STRUCTURES, {
             filter: (structure) => {
-                return (structure.structureType === STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
+                return (structure.structureType === STRUCTURE_EXTENSION ||
+                     structure.structureType == STRUCTURE_SPAWN ||
+                     structure.structureType == STRUCTURE_TOWER) &&
                     structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                 }
             });

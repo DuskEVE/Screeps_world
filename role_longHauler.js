@@ -1,20 +1,27 @@
 let roleLongHauler = {
-    transportMode: false,
-    run: function(creep) {
-        if(creep.store[RESOURCE_ENERGY] === 0) this.transportMode = false;
-        if(creep.store.getFreeCapacity() === 0) this.transportMode = true;
+    transportMode1: false,
+    transportMode2: false,
+    run: function(creep, name) {
+        if(creep.store[RESOURCE_ENERGY] === 0){
+            if(name === 'LongHauler1') this.transportMode1 = false;
+            if(name === 'LongHauler2') this.transportMode1 = false;
+        }
 
-        if(this.transportMode){
+        if(creep.store.getFreeCapacity() === 0){
+            if(name === 'LongHauler1') this.transportMode1 = true;
+            if(name === 'LongHauler2') this.transportMode2 = true;
+        }
+
+        if(this.transportMode1 && name === 'LongHauler1' || this.transportMode2 && name === 'LongHauler2' ){
             let targets = creep.room.find(FIND_STRUCTURES, {
             filter: (structure) => {
-                return (structure.structureType === STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
+                return (structure.structureType === STRUCTURE_EXTENSION ||
+                    structure.structureType == STRUCTURE_SPAWN ||
+                    structure.structureType == STRUCTURE_TOWER) &&
                     structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                 }
             });
-            if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.room.controller);
-            }
-            /*if(targets.length > 0) {
+            if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 }
@@ -23,7 +30,7 @@ let roleLongHauler = {
                 if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(creep.room.controller);
                 }
-            }*/
+            }
         }
         else{
             let sources = creep.room.find(FIND_SOURCES);
