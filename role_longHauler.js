@@ -4,7 +4,7 @@ let roleLongHauler = {
     run: function(creep, name) {
         if(creep.store[RESOURCE_ENERGY] === 0){
             if(name === 'LongHauler1') this.transportMode1 = false;
-            if(name === 'LongHauler2') this.transportMode1 = false;
+            if(name === 'LongHauler2') this.transportMode2 = false;
         }
 
         if(creep.store.getFreeCapacity() === 0){
