@@ -8,6 +8,8 @@ module.exports.loop = function (){
     if(Game.getObjectById('5bbcabaa9099fc012e634159').safeMode === undefined){
         Game.getObjectById('5bbcabaa9099fc012e634159').activateSafeMode();
     }
+    let destinationPos = new RoomPosition(35, 13, 'W22N54');
+    destinationPos.createFlag('Flag1');
 
     let tower = Game.getObjectById('6511779d88fd0b6d4e1cdb10');
     if(tower) {

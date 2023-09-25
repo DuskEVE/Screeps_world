@@ -12,6 +12,13 @@ let roleLongHauler = {
             if(name === 'LongHauler2') this.transportMode2 = true;
         }
 
+        const look = Game.flags.Flag1.pos.look();
+        look.forEach(function(lookObject) {
+            if(lookObject.type == LOOK_CREEPS) {
+                let name = lookObject.creep.name;
+            }
+        });
+
         if(this.transportMode1 && name === 'LongHauler1' || this.transportMode2 && name === 'LongHauler2' ){
             let targets = creep.room.find(FIND_STRUCTURES, {
             filter: (structure) => {
