@@ -12,7 +12,7 @@ let roleBuilder = {
 	    if(this.buildMode) {
 	        let buildTargets = creep.room.find(FIND_CONSTRUCTION_SITES);
 			let repairTargets = creep.room.find(FIND_STRUCTURES, {
-				filter: object => object.hits < object.hitsMax
+				filter: object => (object.hits / object.hitsMax) < 1
 			});
 			repairTargets.sort((a,b) => a.hits - b.hits);
 

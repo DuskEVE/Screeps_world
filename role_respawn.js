@@ -26,7 +26,7 @@ let roleRespawn = {
                 num++;
             }
 
-            Game.spawns['base_01'].spawnCreep([WORK, WORK, CARRY, MOVE], name, {memory:'miner'});
+            Game.spawns['base_01'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], name, {memory:'miner'});
         }
 
         if(upgraders.length < 1){
@@ -41,10 +41,10 @@ let roleRespawn = {
                 num++;
             }
 
-            Game.spawns['base_01'].spawnCreep([WORK, WORK, CARRY, MOVE], name, {memory:'upgrader'});
+            Game.spawns['base_01'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], name, {memory:'upgrader'});
         }
         
-        if(builders.length < 2){
+        if(builders.length < 1){
             let name = null;
             let num = 1;
 
@@ -56,22 +56,22 @@ let roleRespawn = {
                 num++;
             }
 
-            Game.spawns['base_01'].spawnCreep([WORK, WORK, CARRY, MOVE], name, {memory:'builder'});
+            Game.spawns['base_01'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], name, {memory:'builder'});
         }
 
-        if(longHaulers.length < 2){
+        if(longHaulers.length < 1){
             let name = null;
             let num = 1;
 
             for(let i=0; i<9; i++){
-                if(builders.indexOf(`LongHauler${num}`) === -1){
+                if(longHaulers.indexOf(`LongHauler${num}`) === -1){
                     name = `LongHauler${num}`;
                     break;
                 }
                 num++;
             }
 
-            Game.spawns['base_01'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE], name, {memory:'longHauler'});
+            Game.spawns['base_01'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE], name, {memory:'longHauler'});
         }
         
     }
