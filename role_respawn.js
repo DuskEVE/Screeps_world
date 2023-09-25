@@ -71,7 +71,7 @@ let roleRespawn = {
                 num++;
             }
 
-            Game.spawns['base_01'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE], name, {memory:'longHauler'});
+            Game.spawns['base_01'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE], name, {memory:'longHauler'});
         }
         
     }
