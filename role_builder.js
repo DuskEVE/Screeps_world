@@ -21,11 +21,11 @@ let roleBuilder = {
 					creep.moveTo(buildTargets[0], {visualizePathStyle: {stroke: '#ffffff'}});
 				}
 			}
-			else if(repairTargets.length){
+			/*else if(repairTargets.length){
 				if(creep.repair(repairTargets[0]) == ERR_NOT_IN_RANGE) {
 					creep.moveTo(repairTargets[0]);
 				}
-			}
+			}*/
 			else{
 				this.buildMode = false;
 				this.upgradMode = true;

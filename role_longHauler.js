@@ -12,11 +12,10 @@ let roleLongHauler = {
             if(name === 'LongHauler2') this.transportMode2 = true;
         }
 
-        let creepInPos;
+        let creepInPos = null;
         look.forEach(function(lookObject) {
             if(lookObject.type == LOOK_CREEPS) {
                 creepInPos = lookObject.creep.name;
-
             }
         });
 
@@ -42,8 +41,14 @@ let roleLongHauler = {
         }
         else{
             let sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[0]) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0]);
+            
+            if(creepInPos === null || creepInPos === name){
+                if(creep.harvest(sources[0]) === ERR_NOT_IN_RANGE) {
+                    creep.moveTo(sources[0]);
+                }
+            }
+            else{
+                creep.moveTo(Game.flags.Flag2);
             }
         }
 
