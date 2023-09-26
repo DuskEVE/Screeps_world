@@ -21,21 +21,21 @@ let roleBuilder = {
 					creep.moveTo(buildTargets[0], {visualizePathStyle: {stroke: '#ffffff'}});
 				}
 			}
-			/*else if(repairTargets.length){
+			else if(repairTargets.length){
 				if(creep.repair(repairTargets[0]) == ERR_NOT_IN_RANGE) {
 					creep.moveTo(repairTargets[0]);
 				}
-			}*/
+			}
 			else{
 				this.buildMode = false;
 				this.upgradMode = true;
 			}
 		}
-		else if(this.upgradMod){
+		/*if(this.upgradMod){
 			if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(creep.room.controller);
             }
-		}
+		}*/
 		else {
 			let sources = creep.room.find(FIND_SOURCES);
 			if(creep.harvest(sources[sources.length-1]) === ERR_NOT_IN_RANGE) {

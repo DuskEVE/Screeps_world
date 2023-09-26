@@ -29,7 +29,7 @@ let roleRespawn = {
             Game.spawns['base_01'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], name, {memory:'miner'});
         }
 
-        if(upgraders.length < 2){
+        if(upgraders.length < 1){
             let name = null;
             let num = 1;
 
