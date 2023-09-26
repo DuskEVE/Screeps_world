@@ -8,8 +8,12 @@ module.exports.loop = function (){
     if(Game.getObjectById('5bbcabaa9099fc012e634159').safeMode === undefined){
         Game.getObjectById('5bbcabaa9099fc012e634159').activateSafeMode();
     }
+
+    let checkMiningPos = new RoomPosition(36, 14, 'W22N54');
     let destinationPos = new RoomPosition(35, 13, 'W22N54');
-    destinationPos.createFlag('Flag1');
+    checkMiningPos.createFlag('Flag1');
+    destinationPos.createFlag('Flag2');
+    const look = Game.flags.Flag1.pos.look();
 
     let tower = Game.getObjectById('6511779d88fd0b6d4e1cdb10');
     if(tower) {
@@ -33,6 +37,6 @@ module.exports.loop = function (){
         if(creep.memory == 'miner') roleMining.run(creep);
         if(creep.memory == 'upgrader') roleUpgrad.run(creep);
         if(creep.memory == 'builder') roleBuilder.run(creep);
-        if(creep.memory == 'longHauler') roleLongHauler.run(creep, name);
+        if(creep.memory == 'longHauler') roleLongHauler.run(creep, name, look);
     }
 }

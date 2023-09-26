@@ -1,7 +1,7 @@
 let roleLongHauler = {
     transportMode1: false,
     transportMode2: false,
-    run: function(creep, name) {
+    run: function(creep, name, look) {
         if(creep.store[RESOURCE_ENERGY] === 0){
             if(name === 'LongHauler1') this.transportMode1 = false;
             if(name === 'LongHauler2') this.transportMode2 = false;
@@ -12,10 +12,11 @@ let roleLongHauler = {
             if(name === 'LongHauler2') this.transportMode2 = true;
         }
 
-        const look = Game.flags.Flag1.pos.look();
+        let creepInPos;
         look.forEach(function(lookObject) {
             if(lookObject.type == LOOK_CREEPS) {
-                let name = lookObject.creep.name;
+                creepInPos = lookObject.creep.name;
+
             }
         });
 
