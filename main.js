@@ -19,10 +19,12 @@ module.exports.loop = function (){
             filter: (structure) => structure.hits < structure.hitsMax
         });
         let closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        let energy = tower.store.getFreeCapacity(RESOURCE_ENERGY);
+        console.log(energy)
         if(closestHostile) {
             tower.attack(closestHostile);
         }
-        else if(damagedStructure) {
+        else if(damagedStructure && energy < 500) {
             tower.repair(damagedStructure);
         }
 
