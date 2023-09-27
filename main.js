@@ -4,6 +4,7 @@ const roleRespawn = require('./role_respawn');
 const roleUpgrad = require('./role_upgrad');
 const roleLongHauler = require('./role_longHauler');
 const roleHauler = require('./role_hauler');
+const roleRenew = require('./role_renew');
 
 module.exports.loop = function (){
     /*if(Game.getObjectById('5bbcabaa9099fc012e634159').safeMode === undefined){
@@ -31,10 +32,17 @@ module.exports.loop = function (){
 
     for(let name in Game.creeps){
         let creep = Game.creeps[name];
-        if(creep.memory == 'miner') roleMining.run(creep);
-        if(creep.memory == 'upgrader') roleUpgrad.run(creep);
-        if(creep.memory == 'builder') roleBuilder.run(creep);
-        if(creep.memory == 'longHauler') roleLongHauler.run(creep, name, look);
-        if(creep.memory === 'hauler') roleHauler.run(creep);
+        let time = Number(creep.ticksToLive);
+
+        /*if(time < 200){
+            roleRenew.run(creep);
+        }
+        else{*/
+            if(creep.memory === 'miner') roleMining.run(creep);
+            if(creep.memory === 'upgrader') roleUpgrad.run(creep);
+            if(creep.memory === 'builder') roleBuilder.run(creep);
+            if(creep.memory === 'longHauler') roleLongHauler.run(creep, name, look);
+            if(creep.memory === 'hauler') roleHauler.run(creep);
+        //}
     }
 }
