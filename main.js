@@ -15,17 +15,18 @@ module.exports.loop = function (){
 
     let tower = Game.getObjectById('6511779d88fd0b6d4e1cdb10');
     if(tower) {
-        let damagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+        let damagedStructure = tower.room.find(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < structure.hitsMax
         });
         let closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         let energy = tower.store.getFreeCapacity(RESOURCE_ENERGY);
-        console.log(energy)
+        damagedStructure.sort((a,b) => a.hits - b.hits);
+
         if(closestHostile) {
             tower.attack(closestHostile);
         }
         else if(damagedStructure && energy < 500) {
-            tower.repair(damagedStructure);
+            tower.repair(damagedStructure[0]);
         }
 
     }
